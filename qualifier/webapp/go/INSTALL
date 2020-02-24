@@ -1,0 +1,24 @@
+go get github.com/bradfitz/gomemcache/memcache
+go get github.com/go-sql-driver/mysql
+go get github.com/gorilla/context
+go get github.com/gorilla/mux
+go get github.com/gorilla/securecookie
+
+sudo apt install mysql-server
+sudo apt install memcached
+sudo apt install nginx
+sudo apt install graphviz
+
+sudo mysql -e 'grant all on isucon.* to isucon@localhost identified by ""'
+sudo mysql -e 'create user isucon identified by ""'
+sudo mysql -e 'grant all on isucon.* to isucon@`%` identified by ""'
+mysql isucon -u isucon < ../config/schema.sql
+
+# https://github.com/pkg/profile
+go get github.com/pkg/profile
+
+sudo rm -f /etc/nginx/sites-enabled/default
+sudo cp nginx-isucon3 /etc/nginx/sites-enabled/isucon3
+sudo systemctl restart nginx
+
+~/go/bin/kataribe -generate

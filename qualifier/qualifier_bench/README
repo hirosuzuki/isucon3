@@ -1,0 +1,14 @@
+sudo mkdir -p /opt/isucon/data
+sudo mkdir -p /opt/isucon/bin
+sudo chmod -R o+w /opt/isucon/
+wget -O /opt/isucon/data/init.sql.gz https://github.com/matsuu/ansible-isucon/raw/master/isucon3-qualifier/files/opt/isucon/data/init.sql.gz
+
+sudo apt install pigz
+sudo apt install libxml2-dev
+go get -v github.com/moovweb/gokogiri
+fix: https://github.com/moovweb/gokogiri/pull/97/files
+go get -v github.com/wsxiaoys/terminal/color
+go build
+
+export GODEBUG=cgocheck=0
+
