@@ -12,3 +12,6 @@ bench:
 kataribe:
 	cat /var/log/nginx/access-kataribe.log | ~/go/bin/kataribe
 
+profile:
+	go tool pprof -http=":5001" app cpu.pprof
+

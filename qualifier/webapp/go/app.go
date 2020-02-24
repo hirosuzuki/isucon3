@@ -19,6 +19,7 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
+	"github.com/pkg/profile"
 )
 
 const (
@@ -112,6 +113,7 @@ var (
 
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
+	defer profile.Start(profile.ProfilePath(".")).Stop()
 
 	env := os.Getenv("ISUCON_ENV")
 	if env == "" {
