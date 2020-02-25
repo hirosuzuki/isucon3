@@ -3,7 +3,7 @@ log_format with_time '$remote_addr - $remote_user [$time_local] "$request" $stat
 server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
-	root /var/www/html;
+	root /opt/isucon/public;
 
 	index index.html index.htm index.nginx-debian.html;
 
@@ -15,4 +15,23 @@ server {
 		proxy_set_header Host $host;
 		proxy_pass http://127.0.0.1:5000/;
 	}
+
+	location /img {
+		root /opt/isucon/public;
+		expires 1d;
+		add_header Cache-Control "public, max-age=86400";
+	}
+
+	location /css {
+		root /opt/isucon/public;
+		expires 1d;
+		add_header Cache-Control "public, max-age=86400";
+	}
+
+	location /js {
+		root /opt/isucon/public;
+		expires 1d;
+		add_header Cache-Control "public, max-age=86400";
+	}
+
 }

@@ -1,5 +1,6 @@
 run:
 	go build -o app
+	rsync -av ../public/ /opt/isucon/public/
 	sudo cp nginx-isucon3 /etc/nginx/sites-enabled/isucon3
 	sudo systemctl restart nginx
 	./app
@@ -14,4 +15,10 @@ kataribe:
 
 profile:
 	go tool pprof -http=":5001" app cpu.pprof
+
+check-css:
+	curl -i http://localhost/css/bootstrap.min.css
+
+http-dump:
+	sudo tcpdump -i lo -A dst port 80
 
